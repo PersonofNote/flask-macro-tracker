@@ -1,28 +1,30 @@
-import React, { PureComponent } from 'react';
-import UserList from './components/UserList';
-import { createStore } from 'redux';
+import React, { useState, useEffect, PureComponent } from 'react';
 import {
   PieChart, Pie, Legend, Tooltip, Sector, Cell,
 } from 'recharts';
 import './App.css';
 
-const defaultState = { checked: false };
-const reducer = function(state = defaultState, action) {
-  switch (action.type) {
-    case 'TOGGLE':
-      return {...state, checked: !state.checked};
-  }
-  return state;
-};
-const store = createStore(reducer);
-
 function App() {
+  const [userData, setUserData] = useState(0);
+
+useEffect(() => {
+  fetch('/user/', {
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }}).then(res => res.json()).then(data => {
+    setUserData(data.time);
+    console.log(data);
+  });
+}, []);
   //Rechart
+  
   const data = [
     { name: 'Carbs', value: 400 },
     { name: 'Protein', value: 300 },
     { name: 'Fat', value: 278 },
   ];
+  
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -47,13 +49,14 @@ function App() {
           display: `flex`,
           flexDirection: `row`
       }}>
+      <p>The current time is {userData}.</p>
       <div style={{
           display: `flex`,
           flexDirection: `column`
       }}>
         <PieChart width={250} height={245}>
           <Pie
-            data={data}
+            data={data.time}
             cx={124}
             cy={125}
             labelLine={false}
@@ -76,8 +79,6 @@ function App() {
               <input></input>
             </form>
       </div>
-      TEST
-      <UserList/>
     </div>
   );
 }
