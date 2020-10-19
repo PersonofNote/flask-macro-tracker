@@ -15,7 +15,7 @@ I don't like any of the calorie trackers I've used so far. Nothing against MyFit
 
 For now the app makes no suggestions. I may add a macro/calorie calculator in the future.
 
-FEATURES:
+FEATURES TO IMPLEMENT:
 * User registration
 * User dashboard
     * View that shows various tracking widgets
