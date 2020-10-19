@@ -14,6 +14,16 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        calorie_total = request.form['calorie_total']
+        fat = request.form['fat']
+        carb = request.form['carbs']
+        protein = request.form['protein']
+        water_amount = request.form['water_amount']
+        vegetables = request.form['vegetables']
+        waist = request.form['waist']
+        bust = request.form['bust']
+        hips = request.form['hips']
+        bodyweight = request.form['bodyweight']
         db = get_db()
         error = None
 
@@ -28,8 +38,8 @@ def register():
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
+                'INSERT INTO user (username, password, calorie_total, fat, carb, protein, water_amount, vegetables, waist, bust, hips, bodyweight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                (username, generate_password_hash(password), calorie_total, fat, carb, protein, water_amount, vegetables, waist, bust, hips, bodyweight)
             )
             db.commit()
             return redirect(url_for('auth.login'))

@@ -7,9 +7,32 @@
 {% block content %}
   <form method="post">
     <label for="username">Username</label>
-    <input name="username" id="username" required>
+    <input name="username" id="username" >
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
+    <input type="password" name="password" id="password">
+    <label for="calorie_total"> Total Daily Calorie goal </label>
+    <input type="number" id="calorie_total" name="calorie_total">
+    <label for="water_amount"> How much water do you want to drink? </label>
+    <input type="number" id="water_amount" name="water_amount">
+    <label for="vegetables"> And how many veggies are you aiming for each day?</label>
+    <input type="number" id="vegetables" name="vegetables">
+    <span>What are your macros?</span>
+    <label for="fat">Fat</label>
+    <input type="number" id="fat" name="fat">%
+    <label for="carbs">Carbs</label>
+    <input type="number" id="carbs" name="carbs">%
+    <label for="protein">Protein</label>
+    <input type="number" id="protein" name=
+    protein>%
+    <span>Almost done! Let's get your measurements</span>
+    <label for="bust">Bust</label>
+    <input type="number" id="bust" name="bust">
+    <label for="waist">Waist</label>
+    <input type="number" id="waist" name="waist">
+    <label for="hips">Hips</label>
+    <input type="number" id="hips" name="hips">
+    <label for="bodyweight"> And finally, how much do you weigh?</label>
+    <input type="number" id="bodyweight" name="bodyweight">
     <input type="submit" value="Register">
   </form>
 {% endblock %}
