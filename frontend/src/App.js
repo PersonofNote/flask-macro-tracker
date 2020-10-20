@@ -12,7 +12,7 @@ useEffect(() => {
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-     }}).then(res => res.json()).then(data => {
+     }}).then(res => res.text()).then(data => {
     setUserData(data.time);
     console.log(data);
   });

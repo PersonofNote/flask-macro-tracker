@@ -1,10 +1,25 @@
 {% extends 'base.html' %}
-
-{% block header %}
+{% if g.user %}
+  {% block header %}
   <h1>{% block title %}Dashboard{% endblock %}</h1>
-{% endblock %}
+  {% endblock %}
+  {% block content %}
+  <p> Total calories</p>
+  <p> {{ user['calorie_total'] }} </p>
+  <p>Target protein</p> 
+  {{ user['protein'] }}
+  <p> Today's vegetables</p>
+  <span> 0 / {{user['vegetables']}}</span>
 
-{% block content %}
-<p> {{ user['calorie_total'] }} </p>
-{{ user['protein'] }}
-{% endblock %}
+  <input type="number" id="water_amount" name="water_amount">
+  <form>
+    <label for="vegetables">Vegetables</label>
+    <input type="number" id="vegetables" name="vegetables">
+  </form>
+  {% endblock %}
+  <!-- TODO update view so that it prompts the user to log in rather than showing empty dash-->
+{% else %}
+Please log in
+{% endif %}
+
+

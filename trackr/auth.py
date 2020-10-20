@@ -37,6 +37,7 @@ def register():
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
+            #TODO: Check for injection
             db.execute(
                 'INSERT INTO user (username, password, calorie_total, fat, carb, protein, water_amount, vegetables, waist, bust, hips, bodyweight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                 (username, generate_password_hash(password), calorie_total, fat, carb, protein, water_amount, vegetables, waist, bust, hips, bodyweight)
