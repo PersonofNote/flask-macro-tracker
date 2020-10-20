@@ -1,4 +1,4 @@
-<!-- PROJECT LOGO -->
+<!-- PROJECT LOGO 
 <br />
 <p align="center">
   <a href="">
@@ -6,7 +6,7 @@
   </a>
 
   <h3 align="center">Flask Macro Tracker</h3>
-
+-->
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -18,8 +18,9 @@ For now the app makes no suggestions. I may add a macro/calorie calculator in th
 FEATURES TO IMPLEMENT:
 * User registration
 * User dashboard
-    * View that shows various tracking widgets
+    * View that shows various values
     * View that shows graphs over time (stretch goal)
+* React dashboard with pretty graphs/graphics
 * Nutritional information for food (stretch goal)
 
 
@@ -48,3 +49,6 @@ Project Link: [https://github.com/PersonofNote/flask-macro-tracker](https://gith
 
 
 <!-- ACKNOWLEDGEMENTS -->
+For this project, I drew from:
+
+* [ The official Flask docs tutorial ](https://flask.palletsprojects.com/en/1.1.x/tutorial/#tutorial)

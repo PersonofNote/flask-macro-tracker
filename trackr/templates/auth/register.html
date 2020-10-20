@@ -14,17 +14,17 @@
     <input type="number" id="calorie_total" name="calorie_total">
     <label for="water_amount"> How much water do you want to drink? </label>
     <input type="number" id="water_amount" name="water_amount">
-    <label for="vegetables"> And how many veggies are you aiming for each day?</label>
+    <label for="vegetables"> How many servings of vegetables are you aiming for each day?</label>
     <input type="number" id="vegetables" name="vegetables">
-    <span>What are your macros?</span>
-    <label for="fat">Fat</label>
-    <input type="number" id="fat" name="fat">%
-    <label for="carbs">Carbs</label>
-    <input type="number" id="carbs" name="carbs">%
-    <label for="protein">Protein</label>
+    <span style="width: 100%">What are your macros?</span><br/>
+    <label for="fat">Fat%</label>
+    <input type="number" id="fat" name="fat">
+    <label for="carbs">Carbs%</label>
+    <input type="number" id="carbs" name="carbs">
+    <label for="protein">Protein%</label>
     <input type="number" id="protein" name=
-    protein>%
-    <span>Almost done! Let's get your measurements</span>
+    protein>
+    <span>Almost done! Let's get your measurements</span> <br/>
     <label for="bust">Bust</label>
     <input type="number" id="bust" name="bust">
     <label for="waist">Waist</label>
@@ -33,6 +33,6 @@
     <input type="number" id="hips" name="hips">
     <label for="bodyweight"> And finally, how much do you weigh?</label>
     <input type="number" id="bodyweight" name="bodyweight">
-    <input type="submit" value="Register">
+    <input class="btn-large" type="submit" value="Register">
   </form>
 {% endblock %}
