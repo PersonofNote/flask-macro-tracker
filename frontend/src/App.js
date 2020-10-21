@@ -19,13 +19,13 @@ useEffect(() => {
   });
 }, []);
 
-console.log(userData)
+console.log(userData);
 
   //Rechart testing  
   const chartData = [
-    { name: 'Carbs', value: userData['carbs'] },
-    { name: 'Protein', value: userData['protein'] },
-    { name: 'Fat', value: userData['fat']},
+    { name: 'Carbs', value: userData['carb_goal'] },
+    { name: 'Protein', value: userData['protein_goal'] },
+    { name: 'Fat', value: userData['fat_goal']},
   ];
   
 
@@ -84,6 +84,14 @@ console.log(userData)
             border: `4px solid gray`
           }}></div>
         </div>
+      </div>
+      <div class="row" style={{
+          display: `flex`,
+          flexDirection: `col`
+      }}>
+        {userData['bust']}
+        {userData['waist']}
+        {userData['hips']}
       </div>
       <div className="form-entry">
             <form>

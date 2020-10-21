@@ -24,7 +24,7 @@ def index():
     ).fetchone()
     
     # Comment and uncomment to switch between templates and React decoupled frontend
-    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'])
+    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'], fat_goal = g.user['fat'], carb_coal = g.user['carb'], protein_goal = g.user['protein'], water_goal = g.user['water_amount'], vegetable_goal = g.user['vegetables'], waist = g.user['waist'], bust = g.user['bust'], hips = g.user['hips'], bodyweight = g.user['bodyweight'])
     #return render_template('dashboard/dashboard.html', user=g.user)
 
 # Temporary for getting a working app going
@@ -47,3 +47,14 @@ def update():
         pass
     
     return render_template('dashboard/update.html', user=g.user)
+
+
+    # Temporary for getting a working app going
+@bp.route('/update')
+@login_required
+def graph():
+    '''
+        Fetch each day's entry and plot along a graph
+    '''
+
+    return 
