@@ -5,24 +5,27 @@ import {
 import './App.css';
 
 function App() {
+
+  // TODO next: Break out into components
   const [userData, setUserData] = useState(0);
 
 useEffect(() => {
-  fetch('/user/', {
+  fetch('/user', {
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-     }}).then(res => res.text()).then(data => {
-    setUserData(data.time);
-    console.log(data);
+     }}).then(res => res.json()).then(data => {
+    setUserData(data);
   });
 }, []);
-  //Rechart
-  
-  const data = [
-    { name: 'Carbs', value: 400 },
-    { name: 'Protein', value: 300 },
-    { name: 'Fat', value: 278 },
+
+console.log(userData)
+
+  //Rechart testing  
+  const chartData = [
+    { name: 'Carbs', value: userData['carbs'] },
+    { name: 'Protein', value: userData['protein'] },
+    { name: 'Fat', value: userData['fat']},
   ];
   
 
@@ -43,36 +46,44 @@ useEffect(() => {
     );
   };
 
+
   return (
     <div className="App">
       <div className="row" style={{
           display: `flex`,
           flexDirection: `row`
       }}>
-      <p>The current time is {userData}.</p>
-      <div style={{
-          display: `flex`,
-          flexDirection: `column`
-      }}>
-        <PieChart width={250} height={245}>
-          <Pie
-            data={data.time}
-            cx={124}
-            cy={125}
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={100}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {
-              data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-            }
-          </Pie>
-        </PieChart>
-        <h2> 400/1200</h2>
-      </div>
-        <p> placeholder </p>
+        <div style={{
+            display: `flex`,
+            flexDirection: `column`
+        }}>
+          <PieChart width={250} height={245}>
+            <Pie
+              data={chartData}
+              cx={124}
+              cy={125}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={100}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {
+                chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+              }
+            </Pie>
+          </PieChart>
+          <h2> 400/{userData['calorie_total']}</h2>
+        </div>
+        <div>
+          <div style={{
+            margin: `auto`,
+            marginTop: `2rem`,
+            height: `12rem`,
+            width: `2rem`,
+            border: `4px solid gray`
+          }}></div>
+        </div>
       </div>
       <div className="form-entry">
             <form>

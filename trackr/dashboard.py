@@ -14,7 +14,7 @@ import sys
 bp = Blueprint('dashboard', __name__)
 
 
-@bp.route('/', methods=('GET', 'POST'))
+@bp.route('/user', methods=('GET', 'POST'))
 @login_required
 def index():
     user_id = session.get('user_id')
@@ -22,7 +22,10 @@ def index():
     g.user = get_db().execute(
         'SELECT * FROM user WHERE id = ?', (user_id,)
     ).fetchone()
-    return render_template('dashboard/dashboard.html', user=g.user)
+    
+    # Comment and uncomment to switch between templates and React decoupled frontend
+    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'])
+    #return render_template('dashboard/dashboard.html', user=g.user)
 
 # Temporary for getting a working app going
 @bp.route('/update', methods=('GET', 'POST'))
