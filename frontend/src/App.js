@@ -19,7 +19,9 @@ useEffect(() => {
   });
 }, []);
 
-console.log(userData);
+console.log(userData['carb_goal']);
+console.log(userData['protein_goal']);
+console.log(userData['fat_goal']);
 
   //Rechart testing  
   const chartData = [
@@ -81,7 +83,8 @@ console.log(userData);
             marginTop: `2rem`,
             height: `12rem`,
             width: `2rem`,
-            border: `4px solid gray`
+            border: `4px solid gray`,
+            borderRadius: `16px`
           }}></div>
         </div>
       </div>

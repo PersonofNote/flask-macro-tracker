@@ -18,31 +18,38 @@ bp = Blueprint('dashboard', __name__)
 @login_required
 def index():
     user_id = session.get('user_id')
-    db = get_db()
     g.user = get_db().execute(
         'SELECT * FROM user WHERE id = ?', (user_id,)
     ).fetchone()
     
     # Comment and uncomment to switch between templates and React decoupled frontend
-    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'], fat_goal = g.user['fat'], carb_coal = g.user['carb'], protein_goal = g.user['protein'], water_goal = g.user['water_amount'], vegetable_goal = g.user['vegetables'], waist = g.user['waist'], bust = g.user['bust'], hips = g.user['hips'], bodyweight = g.user['bodyweight'])
+    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'], fat_goal = g.user['fat'], carb_coal = g.user['carb'], protein_goal = g.user['protein'], water_amount = g.user['water_amount'], vegetable_goal = g.user['vegetables'], waist = g.user['waist'], bust = g.user['bust'], hips = g.user['hips'], bodyweight = g.user['bodyweight'])
     #return render_template('dashboard/dashboard.html', user=g.user)
 
-# Temporary for getting a working app going
+# Temporary for getting a working app going.
 @bp.route('/update', methods=('GET', 'POST'))
 @login_required
 def update():
     user_id = session.get('user_id')
-    calorie_total = 500
+    calorie_total = 0
     if request.method == 'POST':
+        print(request.form.to_dict(), file=sys.stderr)
+        # temp for testing
         calorie_total = request.form['calorie_total']
+        bodyweight = request.form['bodyweight']
+        water_amount = request.form['water_amount']
+        carb = request.form['carb']
+        fields = request.form.to_dict()
+        for field in fields:
+            print(fields[field])
         db = get_db()
         db.execute(
-            'UPDATE user SET calorie_total = ?'
+            'UPDATE user SET calorie_total = ?, bodyweight = ?, water_amount = ?, carb = ?'
             ' WHERE id = ?',
-            (calorie_total, user_id)
+            (calorie_total, bodyweight, water_amount, carb, user_id)
         )
         db.commit()
-        return redirect('/')
+        return redirect('/user')
     else:
         pass
     
@@ -50,11 +57,13 @@ def update():
 
 
     # Temporary for getting a working app going
-@bp.route('/update')
+@bp.route('/graph')
 @login_required
 def graph():
     '''
-        Fetch each day's entry and plot along a graph
+        Fetch each day's entry and plot along a graph.
+        Will require making a new model for days and creating a one-to-many relationship where
+        a user has many days
     '''
 
     return 

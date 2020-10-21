@@ -1,3 +1,6 @@
+''' This is mostly for WTForms validation; I am undecided if I will end up using webforms or
+relying on the decoupled React frontend, but am leaving the config object for now '''
+
 import os
 
 class Config(object):
