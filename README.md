@@ -56,3 +56,5 @@ For this project, I drew from:
 * [ The official Flask docs tutorial ](https://flask.palletsprojects.com/en/1.1.x/tutorial/#tutorial)
 
 * [ This Stackoverflow post on working with ImmutableMultiDicts ](https://stackoverflow.com/questions/13522137/in-flask-convert-form-post-object-into-a-representation-suitable-for-mongodb/38215652)
+
+* [ This blog post about forms with React hooks ](https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/)

@@ -1,3 +1,11 @@
+/** 
+ * TODO next: 
+ * -Implement POST request to /update endpoint
+ * -Break chart, forms, menus out into components
+ * -Add client-side validation to forms 
+ * 
+*/
+
 import React, { useState, useEffect, PureComponent } from 'react';
 import {
   PieChart, Pie, Legend, Tooltip, Sector, Cell,
@@ -19,11 +27,12 @@ useEffect(() => {
   });
 }, []);
 
-console.log(userData['carb_goal']);
-console.log(userData['protein_goal']);
-console.log(userData['fat_goal']);
+const handleSubmit = (event) => {
+  // Construct post request by iterating over (not-empty) values in form
+  // Set user data to new result
+  console.log(event);
+};
 
-  //Rechart testing  
   const chartData = [
     { name: 'Carbs', value: userData['carb_goal'] },
     { name: 'Protein', value: userData['protein_goal'] },
@@ -48,9 +57,15 @@ console.log(userData['fat_goal']);
     );
   };
 
-
   return (
-    <div className="App">
+    <div className="App" style={{height: `100vh`}}>
+       <form onSubmit={handleSubmit}>
+        <label>
+          Calorie Goal
+        </label>
+          <input type="number" id="calorie_total" name="calorie_total" />
+          <input type="submit" value="Submit" />
+      </form>
       <div className="row" style={{
           display: `flex`,
           flexDirection: `row`
@@ -88,12 +103,12 @@ console.log(userData['fat_goal']);
           }}></div>
         </div>
       </div>
-      <div class="row" style={{
+      <div className="row" style={{
           display: `flex`,
           flexDirection: `col`
       }}>
-        {userData['bust']}
-        {userData['waist']}
+        {userData['bust']},
+        {userData['waist']},
         {userData['hips']}
       </div>
       <div className="form-entry">

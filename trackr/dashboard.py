@@ -23,7 +23,7 @@ def index():
     ).fetchone()
     
     # Comment and uncomment to switch between templates and React decoupled frontend
-    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'], fat_goal = g.user['fat'], carb_coal = g.user['carb'], protein_goal = g.user['protein'], water_amount = g.user['water_amount'], vegetable_goal = g.user['vegetables'], waist = g.user['waist'], bust = g.user['bust'], hips = g.user['hips'], bodyweight = g.user['bodyweight'])
+    return jsonify(name = g.user['username'], calorie_total = g.user['calorie_total'], fat_goal = g.user['fat'], carb_goal = g.user['carb'], protein_goal = g.user['protein'], water_amount = g.user['water_amount'], vegetable_goal = g.user['vegetables'], waist = g.user['waist'], bust = g.user['bust'], hips = g.user['hips'], bodyweight = g.user['bodyweight'])
     #return render_template('dashboard/dashboard.html', user=g.user)
 
 # Temporary for getting a working app going.
@@ -33,14 +33,14 @@ def update():
     user_id = session.get('user_id')
     calorie_total = 0
     if request.method == 'POST':
-        print(request.form.to_dict(), file=sys.stderr)
-        # temp for testing
+        # temp for testing; rework to iterate over columns in user
         calorie_total = request.form['calorie_total']
         bodyweight = request.form['bodyweight']
         water_amount = request.form['water_amount']
         carb = request.form['carb']
         fields = request.form.to_dict()
         for field in fields:
+            # iterate over columns in user row
             print(fields[field])
         db = get_db()
         db.execute(
