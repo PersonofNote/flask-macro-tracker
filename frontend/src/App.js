@@ -1,121 +1,69 @@
 /** 
  * TODO next: 
  * -Implement POST request to /update endpoint
- * -Break chart, forms, menus out into components
- * -Add client-side validation to forms 
- * 
+ * -Add client-side validation to forms
+ *    -MaterialUI has built-in validation, consider using
+ * -Add login/register pages in React
+ * -Add check for logged-in user
+ * -Style router menu
 */
 
-import React, { useState, useEffect, PureComponent } from 'react';
+import React, { useState, useEffect, PureComponent } from 'react'
 import {
-  PieChart, Pie, Legend, Tooltip, Sector, Cell,
-} from 'recharts';
-import './App.css';
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
+import './App.css'
+import Dashboard from './components/Dashboard'
+import GraphPage from './components/GraphPage'
+import UpdatePage from './components/UpdatePage'
 
 function App() {
 
-  // TODO next: Break out into components
-  const [userData, setUserData] = useState(0);
-
-useEffect(() => {
-  fetch('/user', {
-    headers : { 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-     }}).then(res => res.json()).then(data => {
-    setUserData(data);
-  });
-}, []);
-
-const handleSubmit = (event) => {
-  // Construct post request by iterating over (not-empty) values in form
-  // Set user data to new result
-  console.log(event);
-};
-
-  const chartData = [
-    { name: 'Carbs', value: userData['carb_goal'] },
-    { name: 'Protein', value: userData['protein_goal'] },
-    { name: 'Fat', value: userData['fat_goal']},
-  ];
-  
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({
-    cx, cy, midAngle, innerRadius, outerRadius, percent, index,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
-
   return (
     <div className="App" style={{height: `100vh`}}>
-       <form onSubmit={handleSubmit}>
-        <label>
-          Calorie Goal
-        </label>
-          <input type="number" id="calorie_total" name="calorie_total" />
-          <input type="submit" value="Submit" />
-      </form>
-      <div className="row" style={{
-          display: `flex`,
-          flexDirection: `row`
-      }}>
-        <div style={{
-            display: `flex`,
-            flexDirection: `column`
-        }}>
-          <PieChart width={250} height={245}>
-            <Pie
-              data={chartData}
-              cx={124}
-              cy={125}
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={100}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {
-                chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-              }
-            </Pie>
-          </PieChart>
-          <h2> 400/{userData['calorie_total']}</h2>
-        </div>
+      <div>
+      <Router>
         <div>
-          <div style={{
-            margin: `auto`,
-            marginTop: `2rem`,
-            height: `12rem`,
-            width: `2rem`,
-            border: `4px solid gray`,
-            borderRadius: `16px`
-          }}></div>
+          <nav style={{
+          
+            }}>
+            <ul style={{
+              listStyle: `none`,
+              display: `flex`,
+              flexDirection: `row`,
+              justifyContent: `space-evenly`
+          }}>
+              <li>
+                <Link to="/user">Home</Link>
+              </li>
+              <li>
+                <Link to="/graph">Graph</Link>
+              </li>
+              <li>
+                <Link to="/update">Update Info</Link>
+              </li>
+              <Link to="/logout">Logout</Link>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/user">
+              <Dashboard />
+            </Route>
+            <Route path="/graph">
+              <GraphPage />
+            </Route>
+            <Route path="/update">
+              <UpdatePage />
+            </Route>
+          </Switch>
         </div>
-      </div>
-      <div className="row" style={{
-          display: `flex`,
-          flexDirection: `col`
-      }}>
-        {userData['bust']},
-        {userData['waist']},
-        {userData['hips']}
-      </div>
-      <div className="form-entry">
-            <form>
-              <input></input>
-            </form>
-      </div>
+      </Router>
+    </div>
+   
+
     </div>
   );
 }
