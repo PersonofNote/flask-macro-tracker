@@ -49,7 +49,7 @@ def update():
             (calorie_total, bodyweight, water_amount, carb, user_id)
         )
         db.commit()
-        return redirect('/user')
+        return redirect('/update')
     else:
         pass
     

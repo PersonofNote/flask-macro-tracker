@@ -37,7 +37,7 @@ function App() {
               justifyContent: `space-evenly`
           }}>
               <li>
-                <Link to="/user">Home</Link>
+                <Link to="/dashboard">Home</Link>
               </li>
               <li>
                 <Link to="/graph">Graph</Link>
@@ -49,7 +49,7 @@ function App() {
             </ul>
           </nav>
           <Switch>
-            <Route path="/user">
+            <Route path="/dashboard">
               <Dashboard />
             </Route>
             <Route path="/graph">
