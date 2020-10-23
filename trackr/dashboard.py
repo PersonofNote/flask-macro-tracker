@@ -31,7 +31,6 @@ def index():
 @login_required
 def update():
     user_id = session.get('user_id')
-    calorie_total = 0
     if request.method == 'POST':
         # temp for testing; rework to iterate over columns in user
         calorie_total = request.form['calorie_total']
@@ -50,6 +49,7 @@ def update():
         )
         db.commit()
         return redirect('/update')
+
     else:
         pass
     

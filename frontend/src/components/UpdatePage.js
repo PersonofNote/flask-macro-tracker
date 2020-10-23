@@ -23,7 +23,7 @@ const handleSubmit = (event) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ calore_total: '6000' })
+    body: { calorie_total: '6000' }
   };
   fetch('/update', requestOptions)
       .then(response => response.json())
