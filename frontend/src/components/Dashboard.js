@@ -21,6 +21,11 @@ function Dashboard() {
     });
     }, []);
 
+    const handleSubmit = (event) => {
+    // Construct post request by iterating over (not-empty) values in form
+    // Set user data to new result
+    console.log(event);
+    };
 
   const chartData = [
     { name: 'Carbs', value: userData['carb_goal'] },

@@ -34,6 +34,7 @@ def update():
     calorie_total = 0
     if request.method == 'POST':
         # temp for testing; rework to iterate over columns in user
+        '''
         calorie_total = request.form['calorie_total']
         bodyweight = request.form['bodyweight']
         water_amount = request.form['water_amount']
@@ -42,6 +43,7 @@ def update():
         for field in fields:
             # iterate over columns in user row
             print(fields[field])
+        
         db = get_db()
         db.execute(
             'UPDATE user SET calorie_total = ?, bodyweight = ?, water_amount = ?, carb = ?'
@@ -49,6 +51,7 @@ def update():
             (calorie_total, bodyweight, water_amount, carb, user_id)
         )
         db.commit()
+        '''
         return redirect('/update')
     else:
         pass
