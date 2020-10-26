@@ -22,6 +22,9 @@ import Login from './components/Login'
 
 function App() {
 // Refactored to one GET request that is passed down
+// TODO: Look into this. It feels smelly/bad code to have a request in every component, but need to repopulate
+// the data in the single page
+/*
 const [userData, setUserData] = useState(0);
 
   useEffect(() => {
@@ -33,6 +36,7 @@ const [userData, setUserData] = useState(0);
       setUserData(data);
   });
   }, []);
+*/
 
   return (
     <div className="App" style={{height: `100vh`}}>
@@ -62,13 +66,13 @@ const [userData, setUserData] = useState(0);
           </nav>
           <Switch>
             <Route path="/dashboard">
-              <Dashboard data={userData}/>
+              <Dashboard/>
             </Route>
             <Route path="/graph">
               <GraphPage />
             </Route>
             <Route path="/update">
-              <UpdatePage data={userData} />
+              <UpdatePage />
             </Route>
             <Route path="/login">
               <Login />

@@ -8,9 +8,7 @@ import {
   PieChart, Pie, Legend, Tooltip, Sector, Cell,
 } from 'recharts'
 
-function Dashboard(data) {
-  const userData = data.data;
-  /*
+function Dashboard() {
   const [userData, setUserData] = useState(0);
 
     useEffect(() => {
@@ -22,11 +20,11 @@ function Dashboard(data) {
         setUserData(data);
     });
     }, []);
-*/
+
     const handleSubmit = (event) => {
-    // Construct post request by iterating over (not-empty) values in form
-    // Set user data to new result
-    console.log(event);
+      // TODO: Construct post request to add data to days
+      // Construct post request by iterating over (not-empty) values in form
+      // Set user data to new result
     };
 
   const chartData = [
