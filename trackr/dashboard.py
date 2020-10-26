@@ -41,11 +41,12 @@ def update():
         # TODO: rework to iterate over columns in user, for DRYness and extensibility
         calorie_total = request.json['calorie_total']
         bodyweight = request.json['bodyweight']
+        water_amount = request.json['water_amount']
         db = get_db()
         db.execute(
-            'UPDATE user SET calorie_total = ?, bodyweight = ?'
+            'UPDATE user SET calorie_total = ?, bodyweight = ?, water_amount = ?'
             ' WHERE id = ?',
-            (calorie_total, bodyweight, user_id)
+            (calorie_total, bodyweight, water_amount, user_id)
         )
         db.commit()
         '''

@@ -83,8 +83,6 @@ function UpdatePage(data) {
           defaultValue={values.water_amount}
           onChange={handleChange('water_amount')}
         />
-        <label for="carb"> Percent Carbs </label>
-        <input type="number" id="carb_goal" name="carb"/>
         <input className="btn-large" type="submit" value="Save" />
       </form>
     </div>

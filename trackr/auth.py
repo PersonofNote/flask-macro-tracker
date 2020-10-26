@@ -92,6 +92,7 @@ def load_logged_in_user():
 
 @bp.route('/logout')
 def logout():
+    print('Logging out', sys.stdout)
     session.clear()
     return redirect(url_for('index'))
 

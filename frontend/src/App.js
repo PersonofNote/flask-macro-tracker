@@ -19,6 +19,7 @@ import Dashboard from './components/Dashboard'
 import GraphPage from './components/GraphPage'
 import UpdatePage from './components/UpdatePage'
 import Login from './components/Login'
+import Logout from './components/Logout'
 
 function App() {
 // Refactored to one GET request that is passed down
@@ -39,12 +40,14 @@ const [userData, setUserData] = useState(0);
 */
 
   return (
-    <div className="App" style={{height: `100vh`}}>
+    <div className="App" style={{height: `100vh`,
+    }}>
       <div>
       <Router>
         <div>
           <nav style={{
-          
+            borderBottom: `1px solid gray`,
+            marginBottom: `1.5rem`
             }}>
             <ul style={{
               listStyle: `none`,
@@ -64,20 +67,28 @@ const [userData, setUserData] = useState(0);
               <Link to="/logout">Logout</Link>
             </ul>
           </nav>
-          <Switch>
-            <Route path="/dashboard">
-              <Dashboard/>
-            </Route>
-            <Route path="/graph">
-              <GraphPage />
-            </Route>
-            <Route path="/update">
-              <UpdatePage />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-          </Switch>
+          <div style={{
+            paddingLeft: `0.5rem`,
+            paddingRight: `0.5rem`
+          }}>
+            <Switch>
+              <Route path="/dashboard">
+                <Dashboard/>
+              </Route>
+              <Route path="/graph">
+                <GraphPage />
+              </Route>
+              <Route path="/update">
+                <UpdatePage />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/logout">
+                <Logout />
+              </Route>
+            </Switch>
+          </div>
         </div>
       </Router>
     </div>

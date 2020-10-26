@@ -1,5 +1,5 @@
 /**
- * TODO: Break into subcomponents
+ * TODO: Break into subcomponents and render conditionally
  */
 
 import React, { useState, useEffect } from 'react'
@@ -20,6 +20,8 @@ function Dashboard() {
         setUserData(data);
     });
     }, []);
+
+    console.log(userData);
 
     const handleSubmit = (event) => {
       // TODO: Construct post request to add data to days
@@ -79,7 +81,11 @@ function Dashboard() {
           </PieChart>
           <h2> 400/{userData['calorie_total']}</h2>
         </div>
-        <div>
+        <div style={{
+          display: `flex`,
+          flexDirection: `column`,
+          width: `100%`
+        }}>
           <div style={{
             margin: `auto`,
             marginTop: `2rem`,
@@ -88,12 +94,10 @@ function Dashboard() {
             border: `4px solid gray`,
             borderRadius: `16px`
           }}></div>
+           <h2> 0/{userData['water_amount']}</h2>
         </div>
       </div>
-      <div className="row" style={{
-          display: `flex`,
-          flexDirection: `col`
-      }}>
+      <div className="row">
         {userData['bust']},
         {userData['waist']},
         {userData['hips']}

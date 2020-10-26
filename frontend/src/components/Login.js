@@ -3,13 +3,11 @@ import React, { useState, useEffect, PureComponent } from 'react'
 function Login() {
 
     const handleSubmit = (event) => {
-        // Construct post request by iterating over (not-empty) values in form
-        // Set user data to new result
         event.preventDefault();
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: 'Hmmm' })
+          body: JSON.stringify({ username: '' })
         };
         fetch('/update', requestOptions)
             .then(response => response.json())
