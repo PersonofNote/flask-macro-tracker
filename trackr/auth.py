@@ -57,8 +57,8 @@ def register():
 def login():
     if request.method == 'POST':
         print(request.json, file=sys.stdout)
-        username = request.form['username']
-        password = request.form['password']
+        username = request.json['username']
+        password = request.json['password']
         db = get_db()
         error = None
         user = db.execute(

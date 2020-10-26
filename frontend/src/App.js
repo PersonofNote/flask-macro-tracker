@@ -1,6 +1,5 @@
 /** 
  * TODO next: 
- * -Implement POST request to /update endpoint
  * -Add client-side validation to forms
  *    -MaterialUI has built-in validation, consider using
  * -Add login/register pages in React
@@ -63,13 +62,13 @@ const [userData, setUserData] = useState(0);
           </nav>
           <Switch>
             <Route path="/dashboard">
-              <Dashboard userData={userData}/>
+              <Dashboard data={userData}/>
             </Route>
             <Route path="/graph">
               <GraphPage />
             </Route>
             <Route path="/update">
-              <UpdatePage />
+              <UpdatePage data={userData} />
             </Route>
             <Route path="/login">
               <Login />

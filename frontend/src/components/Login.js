@@ -22,7 +22,7 @@ function Login() {
           display: `flex`,
           flexDirection: `row`
       }}>
-        <form onSubmit={handleSubmit}>
+      <form method="post" onSubmit={handleSubmit}>
             <label>
             Username
             </label>
