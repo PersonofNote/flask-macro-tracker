@@ -80,6 +80,13 @@ function Dashboard() {
             </Pie>
           </PieChart>
           <h2> 400/{userData['calorie_total']}</h2>
+          <div className="form-entry">
+            <form>
+              <input></input>
+              <input></input>
+              <input></input>
+            </form>
+      </div>
         </div>
         <div style={{
           display: `flex`,
@@ -101,11 +108,6 @@ function Dashboard() {
         {userData['bust']},
         {userData['waist']},
         {userData['hips']}
-      </div>
-      <div className="form-entry">
-            <form>
-              <input></input>
-            </form>
       </div>
     </div>
   );

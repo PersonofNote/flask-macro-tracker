@@ -70,8 +70,8 @@ def update():
     else:
         pass
     
-    return request.json
-    #return render_template('dashboard/update.html', user=g.user)
+    #return request.json
+    return render_template('dashboard/update.html', user=g.user)
 
 
     # Temporary for getting a working app going

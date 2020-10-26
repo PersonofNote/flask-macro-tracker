@@ -1,8 +1,14 @@
+/**
+ * TODO:
+ * -Consider if it's worth it to extend the textfield so that you can populate it from props
+ * -There's 10 fields so maybe not worth the effort
+ */
+
 import React, { useState, useEffect, PureComponent } from 'react'
 import { Input } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
-function UpdatePage(data) { 
+function UpdatePage() { 
   
   // Prepopulate form values with current user values  
   const [userData, setUserData] = useState(0);
@@ -17,6 +23,7 @@ function UpdatePage(data) {
     });
     }, []);
   
+
   const [values, setValues] = React.useState({
     calorie_total: userData.calorie_total,
     bodyweight: userData.bodyweight,
@@ -26,12 +33,14 @@ function UpdatePage(data) {
     bust: userData.bust,
     waist: userData.waist,
     hips: userData.hips,
-    showPassword: false,
+    water_amount: userData.water_amount,
+    vegetables: userData.vegetables
   });
 
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
+    console.log(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -53,6 +62,7 @@ function UpdatePage(data) {
       }}>
       </div>
       <form method="post" onSubmit={handleSubmit}>
+      <h3> Stats </h3>
       <TextField
           id="calorie_total"
           label="Calorie Total"
@@ -60,7 +70,7 @@ function UpdatePage(data) {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.calorie_total}
+          defaultValue={userData.calorie_total}
           onChange={handleChange('calorie_total')}
         />
         <TextField
@@ -72,7 +82,38 @@ function UpdatePage(data) {
           }}
           defaultValue={values.bodyweight}
           onChange={handleChange('bodyweight')}
+        /> <br/>
+        <TextField
+          id="bust"
+          label="Bust Measurement"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.bust}
+          onChange={handleChange('bust')}
         />
+        <TextField
+          id="waist"
+          label="Waist Measurement"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.waist}
+          onChange={handleChange('waist')}
+        />
+        <TextField
+          id="hips"
+          label="Hip Measurement"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.hips}
+          onChange={handleChange('hips')}
+        />
+        <h3> Nutrient Goals </h3>
         <TextField
           id="water_amount"
           label="Water Goal"
@@ -82,6 +123,46 @@ function UpdatePage(data) {
           }}
           defaultValue={values.water_amount}
           onChange={handleChange('water_amount')}
+        />
+        <TextField
+          id="vegetables"
+          label="Vegetable Goal"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.vegetables}
+          onChange={handleChange('vegetables')}
+        />
+        <TextField
+          id="protein"
+          label="% Protein"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.protein}
+          onChange={handleChange('protein')}
+        />
+        <TextField
+          id="carb"
+          label="% Carbs"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.carb}
+          onChange={handleChange('carb')}
+        />
+        <TextField
+          id="fat"
+          label="% Fat"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={values.fat}
+          onChange={handleChange('fat')}
         />
         <input className="btn-large" type="submit" value="Save" />
       </form>
