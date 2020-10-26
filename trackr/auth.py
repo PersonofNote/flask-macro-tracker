@@ -9,6 +9,9 @@ from trackr.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+# For printing
+import sys
+
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -53,8 +56,9 @@ def register():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        print(request.json, file=sys.stdout)
+        username = request.json['username']
+        password = request.json['password']
         db = get_db()
         error = None
         user = db.execute(

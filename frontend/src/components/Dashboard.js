@@ -8,7 +8,9 @@ import {
   PieChart, Pie, Legend, Tooltip, Sector, Cell,
 } from 'recharts'
 
-function Dashboard() {
+function Dashboard(data) {
+  const userData = data.data;
+  /*
   const [userData, setUserData] = useState(0);
 
     useEffect(() => {
@@ -20,7 +22,12 @@ function Dashboard() {
         setUserData(data);
     });
     }, []);
-
+*/
+    const handleSubmit = (event) => {
+    // Construct post request by iterating over (not-empty) values in form
+    // Set user data to new result
+    console.log(event);
+    };
 
   const chartData = [
     { name: 'Carbs', value: userData['carb_goal'] },

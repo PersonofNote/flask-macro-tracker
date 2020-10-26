@@ -1,6 +1,5 @@
 /** 
  * TODO next: 
- * -Implement POST request to /update endpoint
  * -Add client-side validation to forms
  *    -MaterialUI has built-in validation, consider using
  * -Add login/register pages in React
@@ -19,8 +18,21 @@ import './App.css'
 import Dashboard from './components/Dashboard'
 import GraphPage from './components/GraphPage'
 import UpdatePage from './components/UpdatePage'
+import Login from './components/Login'
 
 function App() {
+// Refactored to one GET request that is passed down
+const [userData, setUserData] = useState(0);
+
+  useEffect(() => {
+  fetch('/user', {
+      headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      }}).then(res => res.json()).then(data => {
+      setUserData(data);
+  });
+  }, []);
 
   return (
     <div className="App" style={{height: `100vh`}}>
@@ -50,13 +62,16 @@ function App() {
           </nav>
           <Switch>
             <Route path="/dashboard">
-              <Dashboard />
+              <Dashboard data={userData}/>
             </Route>
             <Route path="/graph">
               <GraphPage />
             </Route>
             <Route path="/update">
-              <UpdatePage />
+              <UpdatePage data={userData} />
+            </Route>
+            <Route path="/login">
+              <Login />
             </Route>
           </Switch>
         </div>
