@@ -24,23 +24,10 @@ function UpdatePage() {
     }, []);
   
 
-  const [values, setValues] = React.useState({
-    calorie_total: userData.calorie_total,
-    bodyweight: userData.bodyweight,
-    fat: userData.fat,
-    carb: userData.carb,
-    protein: userData.protein,
-    bust: userData.bust,
-    waist: userData.waist,
-    hips: userData.hips,
-    water_amount: userData.water_amount,
-    vegetables: userData.vegetables
-  });
-
-
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    setUserData({ ...userData, [prop]: event.target.value });
     console.log(event.target.value);
+    console.log(userData);
   };
 
   const handleSubmit = (event) => {
@@ -48,11 +35,17 @@ function UpdatePage() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify( values )
+      body: JSON.stringify( userData )
     };
     fetch('/update', requestOptions)
         .then(response => response.json())
   };
+
+  // Delay until fetch. Consider spinner, but if it loads too fast it will flash. Worth
+  // Implementing a delay and then loading the spinner? Or just assume it's a light enough GET?
+  if (userData == 0) {
+      return <div />
+  }
 
   return (
     <div className="" style={{height: `100vh`}}>
@@ -71,6 +64,7 @@ function UpdatePage() {
             shrink: true,
           }}
           defaultValue={userData.calorie_total}
+
           onChange={handleChange('calorie_total')}
         />
         <TextField
@@ -80,7 +74,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.bodyweight}
+          defaultValue={userData.bodyweight}
           onChange={handleChange('bodyweight')}
         /> <br/>
         <TextField
@@ -90,7 +84,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.bust}
+          defaultValue={userData.bust}
           onChange={handleChange('bust')}
         />
         <TextField
@@ -100,7 +94,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.waist}
+          defaultValue={userData.waist}
           onChange={handleChange('waist')}
         />
         <TextField
@@ -110,7 +104,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.hips}
+          defaultValue={userData.hips}
           onChange={handleChange('hips')}
         />
         <h3> Nutrient Goals </h3>
@@ -121,7 +115,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.water_amount}
+          defaultValue={userData.water_amount}
           onChange={handleChange('water_amount')}
         />
         <TextField
@@ -131,7 +125,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.vegetables}
+          defaultValue={userData.vegetables}
           onChange={handleChange('vegetables')}
         />
         <TextField
@@ -141,7 +135,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.protein}
+          defaultValue={userData.protein}
           onChange={handleChange('protein')}
         />
         <TextField
@@ -151,7 +145,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.carb}
+          defaultValue={userData.carb}
           onChange={handleChange('carb')}
         />
         <TextField
@@ -161,7 +155,7 @@ function UpdatePage() {
           InputLabelProps={{
             shrink: true,
           }}
-          defaultValue={values.fat}
+          defaultValue={userData.fat}
           onChange={handleChange('fat')}
         />
         <input className="btn-large" type="submit" value="Save" />
